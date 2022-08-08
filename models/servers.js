@@ -1,29 +1,30 @@
 const express = require("express");
+const { dbConnection } = require("../database/config");
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
+    this.usuarioPath = "/api/usuarios";
+
+    this.conectarDB();
+
+    this.midlewares();
 
     this.routes();
   }
 
+  async conectarDB() {
+    await dbConnection();
+  }
+
+  midlewares() {
+    this.app.use(express.json());
+    this.app.use(express.static("public"));
+  }
+
   routes() {
-    this.app.get("/", function (req, res) {
-      res.json("pet get");
-    });
-
-    this.app.post("/", function (req, res) {
-      res.json("pet poost");
-    });
-
-    this.app.put("/", function (req, res) {
-      res.json("pet put");
-    });
-
-    this.app.delete("/", function (req, res) {
-      res.json("pet delete");
-    });
+    this.app.use(this.usuarioPath, require("../routes/usuarios"));
   }
 
   listen() {
