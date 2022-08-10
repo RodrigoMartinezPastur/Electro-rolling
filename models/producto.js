@@ -19,7 +19,7 @@ const ProductoSchema = Schema({
   },
   categoria: {
     type: String,
-    required: [true, "la categoria es obligatoria"],
+    //enum: ["HELADERAS", "MICRONDAS"],
   },
 });
 

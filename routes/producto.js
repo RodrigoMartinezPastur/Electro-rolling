@@ -2,7 +2,10 @@ const { Router } = require("express");
 const { validarJWT } = require("../midlewares/validar-jwt");
 const { check } = require("express-validator");
 const { validarCampos } = require("../midlewares/validar-campos");
-const { existeProductoById } = require("../helpers/db-validator");
+const {
+  existeProductoById,
+  esCategoriaValida,
+} = require("../helpers/db-validator");
 const { esAdminRol } = require("../midlewares/validar-rol");
 
 const {
@@ -38,7 +41,7 @@ router.post(
     check("nombre", "el nombre es obligatorio").notEmpty(),
     check("precio", "el precio es obligatorio $$").notEmpty(),
     check("detalle", "los detalles son obligatorios").notEmpty(),
-    // despues tengo que hacer el de las categorias tanto aca como en mongodb
+    check("categoria").custom(esCategoriaValida),
     validarCampos,
   ],
   productoPost
@@ -55,6 +58,7 @@ router.put(
     check("nombre", "el nombre es obligatorio").notEmpty(),
     check("precio", "el precio es obligatorio $$").notEmpty(),
     check("detalle", "los detalles son obligatorios").notEmpty(),
+    check("categoria").custom(esCategoriaValida),
     validarCampos,
   ],
   produtosPut
