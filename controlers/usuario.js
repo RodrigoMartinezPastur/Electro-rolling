@@ -66,7 +66,9 @@ const usuariosDelete = async (req, res) => {
 
   //const usuarioBorrado = await Usuario.findByIdAndRemove(id);
 
-  res.json({ msg: "usuario inactivado", usuarioBorrado });
+  const usuarioAutenticado = req.usuario;
+
+  res.json({ msg: "usuario inactivado", usuarioBorrado, usuarioAutenticado });
 };
 
 module.exports = {
