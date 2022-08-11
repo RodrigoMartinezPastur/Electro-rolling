@@ -18,8 +18,10 @@ const compraGet = async (req = request, res = response) => {
 };
 
 const compraPost = async (req = request, res = response) => {
+  const { id } = req.params;
   const compras = new Compras({
     usuario: req.usuario._id,
+    producto: id,
   });
 
   await compras.save();
