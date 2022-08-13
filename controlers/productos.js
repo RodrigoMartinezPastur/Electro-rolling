@@ -30,6 +30,7 @@ const productoPorId = async (req = request, res = response) => {
   res.status(200).json({ producto });
 };
 
+//TENGO QUE GENERAR OTRO TOKEN MAS PARA GUARDAR LOS DATOS?   PARA GUARDAS LOS DATOS DE NOMBRE, PRECIO,DETALLE,CATEGORIA PARA QUE PUEDAN TERMINAR EN EL COMPRAR
 const productoPost = async (req = request, res = response) => {
   const { nombre, precio, detalle, categoria } = req.body;
 

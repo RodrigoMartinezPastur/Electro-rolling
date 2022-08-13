@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const { dbConnection } = require("../database/config");
 
 class Server {
@@ -8,6 +9,7 @@ class Server {
     this.usuarioPath = "/api/usuarios";
     this.authPath = "/api/auth";
     this.productosPath = "/api/productos";
+    this.comprarPath = "/api/compras";
 
     this.conectarDB();
 
@@ -23,12 +25,14 @@ class Server {
   midlewares() {
     this.app.use(express.json());
     this.app.use(express.static("public"));
+    this.app.use(cors());
   }
 
   routes() {
     this.app.use(this.usuarioPath, require("../routes/usuarios"));
     this.app.use(this.authPath, require("../routes/auth"));
     this.app.use(this.productosPath, require("../routes/producto"));
+    this.app.use(this.comprarPath, require("../routes/compra"));
   }
 
   listen() {
