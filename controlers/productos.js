@@ -32,9 +32,9 @@ const productoPorId = async (req = request, res = response) => {
 
 //TENGO QUE GENERAR OTRO TOKEN MAS PARA GUARDAR LOS DATOS?   PARA GUARDAS LOS DATOS DE NOMBRE, PRECIO,DETALLE,CATEGORIA PARA QUE PUEDAN TERMINAR EN EL COMPRAR
 const productoPost = async (req = request, res = response) => {
-  const { nombre, precio, detalle, categoria } = req.body;
+  const { nombre, img, precio, detalle, categoria } = req.body;
 
-  const producto = new Producto({ nombre, precio, detalle, categoria });
+  const producto = new Producto({ nombre, img, precio, detalle, categoria });
 
   await producto.save();
 
@@ -44,10 +44,11 @@ const productoPost = async (req = request, res = response) => {
 // acutalizar
 const produtosPut = async (req = request, res = response) => {
   const { id } = req.params;
-  const { nombre, precio, detalle, categoria } = req.body;
+  const { nombre, img, precio, detalle, categoria } = req.body;
 
   const datos = {
     nombre,
+    img,
     precio,
     detalle,
     categoria,
