@@ -1,4 +1,3 @@
-const { addListener } = require("nodemon");
 const Server = require("./models/servers");
 require("dotenv").config();
 
