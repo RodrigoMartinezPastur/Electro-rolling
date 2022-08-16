@@ -39,6 +39,7 @@ router.post(
   [
     validarJWT,
     check("nombre", "el nombre es obligatorio").notEmpty(),
+    check("img", "la imagen es obligatoria").notEmpty(),
     check("precio", "el precio es obligatorio $$").notEmpty(),
     check("detalle", "los detalles son obligatorios").notEmpty(),
     check("categoria").custom(esCategoriaValida),
@@ -56,6 +57,7 @@ router.put(
     check("id", "no es un id de mongo valido").isMongoId(),
     check("id").custom(existeProductoById),
     check("nombre", "el nombre es obligatorio").notEmpty(),
+    check("img", "la imagen es obligatoria").notEmpty(),
     check("precio", "el precio es obligatorio $$").notEmpty(),
     check("detalle", "los detalles son obligatorios").notEmpty(),
     check("categoria").custom(esCategoriaValida),
