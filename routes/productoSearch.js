@@ -6,6 +6,6 @@ const { validarJWT } = require("../midlewares/validar-jwt");
 
 const router = Router();
 
-router.get("/", [validarJWT], buscarProducto);
+router.get("/", buscarProducto);
 
 module.exports = router;
