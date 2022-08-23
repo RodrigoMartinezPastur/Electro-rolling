@@ -11,6 +11,7 @@ class Server {
     this.productosPath = "/api/productos";
     this.comprarPath = "/api/compras";
     this.searchPath = "/api/search";
+    this.favoritoPath = "/api/favorito";
 
     this.conectarDB();
 
@@ -35,6 +36,7 @@ class Server {
     this.app.use(this.productosPath, require("../routes/producto"));
     this.app.use(this.comprarPath, require("../routes/compra"));
     this.app.use(this.searchPath, require("../routes/productoSearch"));
+    this.app.use(this.favoritoPath, require("../routes/favorito"));
   }
 
   listen() {

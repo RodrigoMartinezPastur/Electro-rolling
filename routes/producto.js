@@ -24,7 +24,6 @@ router.get("/", productoGet);
 router.get(
   "/:id",
   [
-    validarJWT,
     check("id", "no es un id de mongo valido").isMongoId(),
     check("id").custom(existeProductoById),
     validarCampos,
