@@ -19,6 +19,7 @@ const compraGet = async (req = request, res = response) => {
 
 const compraPost = async (req = request, res = response) => {
   const { id } = req.params;
+
   const compras = new Compras({
     usuario: req.usuario._id,
     producto: id,
@@ -31,7 +32,24 @@ const compraPost = async (req = request, res = response) => {
   });
 };
 
+const compraPut = async (req, res) => {
+  const { id } = req.params;
+
+  const { producto } = req.body;
+
+  const datos = {
+    producto,
+  };
+
+  const compras = await Compras.findByIdAndUpdate(id, datos, { new: true });
+
+  res.json({
+    compras,
+  });
+};
+
 module.exports = {
   compraGet,
   compraPost,
+  compraPut,
 };

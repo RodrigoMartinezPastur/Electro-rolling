@@ -11,7 +11,7 @@ const ComprasSchema = Schema({
     default: Date.now,
   },
   producto: {
-    type: Schema.Types.ObjectId,
+    type: Schema.Types.Array,
     ref: "Producto",
     required: true,
   },
