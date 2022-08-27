@@ -11,9 +11,8 @@ const router = Router();
 
 router.get("/", compraGet);
 
-router.post("/:id", [validarJWT], compraPost);
+router.post("/", [validarJWT], compraPost);
 
-router.put("/:id", compraPut);
 router.delete("/:id", compraDelete);
 
 module.exports = router;
