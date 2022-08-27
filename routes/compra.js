@@ -1,14 +1,18 @@
 const { Router } = require("express");
-const { compraGet, compraPost } = require("../controlers/compras");
+const {
+  compraGet,
+  compraPost,
+  compraPut,
+  compraDelete,
+} = require("../controlers/compras");
 const { validarJWT } = require("../midlewares/validar-jwt");
 
 const router = Router();
 
 router.get("/", compraGet);
 
-router.post("/:id", [validarJWT], compraPost);
+router.post("/", [validarJWT], compraPost);
 
-router.put("/:id");
-router.delete("/:id");
+router.delete("/:id", compraDelete);
 
 module.exports = router;
