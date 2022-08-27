@@ -48,8 +48,15 @@ const compraPut = async (req, res) => {
   });
 };
 
+const compraDelete = async (req = request, res = response) => {
+  const { id } = req.params;
+
+  const compraBorrada = await Compras.findByIdAndRemove(id);
+  res.json({ msg: "compra borrada", compraBorrada });
+};
 module.exports = {
   compraGet,
   compraPost,
   compraPut,
+  compraDelete,
 };
