@@ -2,7 +2,8 @@ const { Schema, model } = require("mongoose");
 
 const ComprasSchema = Schema({
   usuario: {
-    type: Schema.Types.ObjectId,
+    //type: Schema.Types.ObjectId,
+    type: String,
     ref: "Usuario",
     required: true,
   },
@@ -11,7 +12,8 @@ const ComprasSchema = Schema({
     default: Date.now,
   },
   producto: {
-    type: Schema.Types.ObjectId,
+    //type: Schema.Types.ObjectId,
+    type: Array,
     ref: "Producto",
     required: true,
   },

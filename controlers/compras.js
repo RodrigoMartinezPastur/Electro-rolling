@@ -18,11 +18,14 @@ const compraGet = async (req = request, res = response) => {
 };
 
 const compraPost = async (req = request, res = response) => {
-  const { id } = req.params;
-  const compras = new Compras({
+  //const { id } = req.params;
+  const { usuario, producto } = req.body;
+  /*  const usuario = new Compras({
     usuario: req.usuario._id,
-    producto: id,
-  });
+    //producto: id,
+  }); */
+
+  const compras = new Compras({ usuario, producto });
 
   await compras.save();
 
@@ -31,7 +34,31 @@ const compraPost = async (req = request, res = response) => {
   });
 };
 
+const compraPut = async (req, res) => {
+  const { id } = req.params;
+
+  const { producto } = req.body;
+
+  const datos = {
+    producto,
+  };
+
+  const compras = await Compras.findByIdAndUpdate(id, datos, { new: true });
+
+  res.json({
+    compras,
+  });
+};
+
+const compraDelete = async (req = request, res = response) => {
+  const { id } = req.params;
+
+  const compraBorrada = await Compras.findByIdAndDelete(id);
+  res.json({ msg: "compra borrada", compraBorrada });
+};
 module.exports = {
   compraGet,
   compraPost,
+  compraPut,
+  compraDelete,
 };
