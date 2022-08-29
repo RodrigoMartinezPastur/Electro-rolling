@@ -4,6 +4,8 @@ const { ObjectId } = require("mongoose").Types;
 
 const Producto = require("../models/producto");
 
+const Categoria = require("../models/categorias");
+
 const buscarProductoCategoria = async (req = request, res = response) => {
   const { search } = req.query;
   const { limite = 15, desde = 0 } = req.query;
@@ -18,12 +20,25 @@ const buscarProductoCategoria = async (req = request, res = response) => {
 
   const regex = new RegExp(search, "i");
 
-  const productos = await Producto.find({
-    categoria: regex,
-    estado: true,
-  }).skip(desde).limit(limite).populate("detalle", "nombre");
+  const [productos, total] = await Promise.all([
+    Producto.find({
+      categoria: regex,
+      estado: true,
+    })
+      .skip(desde)
+      .limit(limite)
+      .populate("detalle", "nombre"),
+    Producto.find({ categoria: regex }).countDocuments([
+      "CELULARES",
+      "HELADERAS",
+      "TELEVISORES",
+      "MICROONDAS",
+      "NOTEBOOKS",
+      "COCINA",
+    ]),
+  ]);
 
-  return res.json({ results: productos });
+  return res.json({ total: total, results: productos });
 };
 
 module.exports = { buscarProductoCategoria };

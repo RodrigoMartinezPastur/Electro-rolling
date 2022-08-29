@@ -18,12 +18,18 @@ const buscarProducto = async (req = request, res = response) => {
 
   const regex = new RegExp(search, "i");
 
-  const productos = await Producto.find({
-    nombre: regex,
-    estado: true,
-  }).skip(desde).limit(limite).populate("detalle", "nombre");
+  const [producto, total] = await Promise.all([
+    Producto.find({
+      nombre: regex,
+      estado: true,
+    })
+      .skip(desde)
+      .limit(limite)
+      .populate("detalle", "nombre"),
+    Producto.countDocuments({ estado: true }),
+  ]);
 
-  return res.json({ results: productos });
+  return res.json({ total: total, results: producto });
 };
 
 module.exports = { buscarProducto };
