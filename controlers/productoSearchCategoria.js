@@ -4,7 +4,7 @@ const { ObjectId } = require("mongoose").Types;
 
 const Producto = require("../models/producto");
 
-const buscarProducto = async (req = request, res = response) => {
+const buscarProductoCategoria = async (req = request, res = response) => {
   const { search } = req.query;
   const { limite = 15, desde = 0 } = req.query;
 
@@ -19,11 +19,11 @@ const buscarProducto = async (req = request, res = response) => {
   const regex = new RegExp(search, "i");
 
   const productos = await Producto.find({
-    nombre: regex,
+    categoria: regex,
     estado: true,
   }).skip(desde).limit(limite).populate("detalle", "nombre");
 
   return res.json({ results: productos });
 };
 
-module.exports = { buscarProducto };
+module.exports = { buscarProductoCategoria };
