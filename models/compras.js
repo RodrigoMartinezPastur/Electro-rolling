@@ -2,8 +2,8 @@ const { Schema, model } = require("mongoose");
 
 const ComprasSchema = Schema({
   usuario: {
-    //type: Schema.Types.ObjectId,
-    type: String,
+    type: Schema.Types.ObjectId,
+    //type: String,
     ref: "Usuario",
     required: true,
   },
