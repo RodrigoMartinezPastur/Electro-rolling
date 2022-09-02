@@ -3,7 +3,6 @@ const { check } = require("express-validator");
 const {
   compraGet,
   compraPost,
-  compraPut,
   compraDelete,
 } = require("../controlers/compras");
 const { validarCampos } = require("../midlewares/validar-campos");
