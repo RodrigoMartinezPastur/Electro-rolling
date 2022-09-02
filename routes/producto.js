@@ -78,5 +78,5 @@ router.delete(
   ],
   productoDelete
 );
-// intento de reinicio de heroku
+
 module.exports = router;
