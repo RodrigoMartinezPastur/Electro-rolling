@@ -4,13 +4,15 @@ const Producto = require("../models/producto");
 
 // traer todos los productos
 const productoGet = async (req = request, res = response) => {
-  const { limite = 15, desde = 0 } = req.query;
+  const { limite = 15, desde = 0, reverse = false } = req.query;
 
   const [producto, total] = await Promise.all([
-    Producto.find({ estado: true }).skip(desde).limit(limite),
+    Producto.find({ estado: true }).skip(desde).limit(limite),    
     Producto.countDocuments({ estado: true }),
   ]);
-
+  if (reverse=="true") {
+    producto.reverse()
+  };  
   res.status(200).json({ total, producto });
 };
 
