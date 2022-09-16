@@ -28,7 +28,7 @@ const buscarProductoCategoria = async (req = request, res = response) => {
       .skip(desde)
       .limit(limite)
       .populate("detalle", "nombre"),
-    Producto.find({ categoria: regex }).countDocuments([
+    Producto.find({ categoria: regex, estado: true, }).countDocuments([
       "CELULARES",
       "HELADERAS",
       "TELEVISORES",
