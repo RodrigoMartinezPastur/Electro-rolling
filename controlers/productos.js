@@ -7,12 +7,12 @@ const productoGet = async (req = request, res = response) => {
   const { limite = 15, desde = 0, reverse = false } = req.query;
 
   const [producto, total] = await Promise.all([
-    Producto.find().skip(desde).limit(limite),    
+    Producto.find().skip(desde).limit(limite),
     Producto.countDocuments(),
   ]);
-  if (reverse=="true") {
-    producto.reverse()
-  };  
+  if (reverse == "true") {
+    producto.reverse();
+  }
   res.status(200).json({ total, producto });
 };
 
@@ -54,7 +54,7 @@ const produtosPut = async (req = request, res = response) => {
     precio,
     detalle,
     categoria,
-    estado : true
+    estado: true,
   };
 
   const productos = await Producto.findByIdAndUpdate(id, datos, { new: true });
