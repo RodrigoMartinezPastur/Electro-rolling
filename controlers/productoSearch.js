@@ -26,7 +26,7 @@ const buscarProducto = async (req = request, res = response) => {
       .skip(desde)
       .limit(limite)
       .populate("detalle", "nombre"),
-    Producto.find({ nombre: regex }).countDocuments([]),
+    Producto.find({ nombre: regex, estado: true, }).countDocuments([]),
   ]);
 
   return res.json({ total: total, results: producto });
