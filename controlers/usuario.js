@@ -20,6 +20,15 @@ const usuariosGet = async (req = request, res = resolve) => {
   res.json({ total, usuarios });
 };
 
+const obtenerIdUsuario = async (req, res) => {
+  const { _id } = req.usuario;
+  const usuario = await Usuario.findById(_id);
+
+  res.status(200).json({
+    usuario,
+  });
+};
+
 const usuariosPost = async (req, res) => {
   const { nombre, email, password, role } = req.body;
 
@@ -76,4 +85,5 @@ module.exports = {
   usuariosPost,
   usuariosPut,
   usuariosDelete,
+  obtenerIdUsuario,
 };

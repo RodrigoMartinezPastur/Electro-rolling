@@ -11,6 +11,7 @@ const {
 
 const {
   usuariosGet,
+  obtenerIdUsuario,
   usuariosPost,
   usuariosPut,
   usuariosDelete,
@@ -19,6 +20,8 @@ const {
 const router = Router();
 
 router.get("/", [validarJWT, esAdminRol], usuariosGet);
+
+router.get("/validar", [validarJWT], obtenerIdUsuario);
 
 router.post(
   "/",
