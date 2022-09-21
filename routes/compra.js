@@ -1,16 +1,17 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
+const { validarJWT } = require("../midlewares/validar-jwt");
+const { esAdminRol } = require("../midlewares/validar-rol");
 const {
   compraGet,
   compraPost,
   compraDelete,
 } = require("../controlers/compras");
 const { validarCampos } = require("../midlewares/validar-campos");
-const { validarJWT } = require("../midlewares/validar-jwt");
 
 const router = Router();
 
-router.get("/", compraGet);
+router.get("/", [validarJWT, esAdminRol], compraGet);
 
 router.post(
   "/",
