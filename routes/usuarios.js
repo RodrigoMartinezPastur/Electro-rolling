@@ -11,6 +11,7 @@ const {
 
 const {
   usuariosGet,
+  obtenerIdUsuario,
   usuariosPost,
   usuariosPut,
   usuariosDelete,
@@ -20,6 +21,8 @@ const router = Router();
 
 router.get("/", [validarJWT, esAdminRol], usuariosGet);
 
+router.get("/validar", [validarJWT], obtenerIdUsuario);
+
 router.post(
   "/",
   [
@@ -27,7 +30,7 @@ router.post(
     check("password", "el password debe tener minimo 6 caracteres").isLength({
       min: 6,
     }),
-    check("email", "el correo no es valido").isEmail(),
+    check("email", "el correo no es valido").isEmail(), 
     check("email").custom(existeEmail),
     check("role").custom(esRolValido),
     validarCampos,
