@@ -22,11 +22,11 @@ const usuariosGet = async (req = request, res = resolve) => {
 
 const obtenerIdUsuario = async (req, res) => {
   const { _id } = req.usuario;
-  const usuario = await Usuario.findById(_id)
+  const usuario = await Usuario.findById(_id);
 
   res.status(200).json({
-    usuario
-  })
+    usuario,
+  });
 };
 
 const usuariosPost = async (req, res) => {

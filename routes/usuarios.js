@@ -30,7 +30,7 @@ router.post(
     check("password", "el password debe tener minimo 6 caracteres").isLength({
       min: 6,
     }),
-    check("email", "el correo no es valido").isEmail(), 
+    check("email", "el correo no es valido").isEmail(),
     check("email").custom(existeEmail),
     check("role").custom(esRolValido),
     validarCampos,
